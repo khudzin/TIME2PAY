@@ -41,6 +41,14 @@
 		0% { opacity: 0;}
 		100% { opacity: 1;}
 	}
+	@-webkit-keyframes fadeOut {
+		from { opacity: 1;}
+		to { opacity: 0;}
+	}  
+	@keyframes fadeOut {
+		from { opacity: 1;}
+		to { opacity: 0;}
+	}
 	.calculate {
 		padding: 15px;
 		border: 2px solid transparent;
@@ -126,7 +134,7 @@ let calculate = document.querySelector('.calculate');
 					console.log(stxt);
 
 				let resultCont = document.querySelector('.result');
-				document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s;  animation: fadeIn 1s;"
+				document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s;  animation: fadeIn 1s;";
 				resultCont.innerHTML = stxt + ": " + result + " грн.<br> Рабочее время: " + diffTime + " час.";
 				}
 				else {
@@ -137,6 +145,7 @@ let calculate = document.querySelector('.calculate');
 
 let reset = document.querySelector('.reset');
 		reset.addEventListener('click', function (){
+			document.querySelector(".result").style.cssText = "-webkit-animation: fadeOut 1s;  animation: fadeOut 1s;";
 			document.querySelector('#startHours').value='';
 			document.querySelector('#startMins').value='';
 			document.querySelector('#endHours').value='';
