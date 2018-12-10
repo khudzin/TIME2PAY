@@ -134,7 +134,7 @@ let calculate = document.querySelector('.calculate');
 					console.log(stxt);
 
 				let resultCont = document.querySelector('.result');
-				document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s;  animation: fadeIn 1s;";
+				document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s forwards;  animation: fadeIn 1s forwards;";
 				resultCont.innerHTML = stxt + ": " + result + " грн.<br> Рабочее время: " + diffTime + " час.";
 				}
 				else {
@@ -145,7 +145,7 @@ let calculate = document.querySelector('.calculate');
 
 let reset = document.querySelector('.reset');
 		reset.addEventListener('click', function (){
-			document.querySelector(".result").style.cssText = "-webkit-animation: fadeOut 1s;  animation: fadeOut 1s;";
+			document.querySelector(".result").style.cssText = "-webkit-animation: fadeOut 1s forwards;  animation: fadeOut 1s forwards;";
 			document.querySelector('#startHours').value='';
 			document.querySelector('#startMins').value='';
 			document.querySelector('#endHours').value='';
