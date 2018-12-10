@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TIME2PAY</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<style>
+	body {max-width: 75vw; margin: 0 auto; font-family: 'Roboto Condensed', sans-serif;
+    	background-color: rgba(244,247,250,0.5);}
+	input, select{
+	    width: 50px;
+	    padding: 15px;
+	    margin: 12.5px 25px;
+	    border: 1px solid #ccc;
+	    border-radius: 2px;}
+	select {width: calc(10% + 175px); margin: 10px 2px;}
+	h1 {margin: 15px auto; }
+	form{margin-bottom: 15px;}
+	fieldset {border: 1px solid #ccc;border-radius: 2px;}
+	legend {
+		background-color: #3a4044;
+		color: #fff;
+		padding: 3px 6px;}
+	.result {margin: 25px 0; font-size: 24px;}
+	@-webkit-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+	}  
+	@keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+	}
+	.calculate {
+		padding: 15px;
+		border: 2px solid transparent;
+		border-radius: 2px;
+		background-color: rgba(123,192,147,0.8);
+		color: #fff;
+		margin:15px 25px 0 2px ;}
+	.reset	{
+	    padding: 15px;
+	    border: 2px solid transparent;
+	    border-radius: 2px;
+	    background-color: #fff;
+	    color: #888;  
+	    margin:0 35px;}
+
+	</style>
+</head>
+<body>
+	<h1>TIME2PAY</h1>
+	<div class="app">
+		<form class="start"> 
+  		<fieldset>
+			<Legend>Начало рабочего дня</Legend>
+			<input type="number" id="startHours" step="1" min="0" max="24" value="0">
+			<input type="number" id="startMins" step="1" min="0" max="60" value="0">
+		</fieldset>	
+		</form>
+
+		<form class="end"> 
+  		<fieldset>
+			<Legend>Конец рабочего дня</Legend>
+			<input type="number" id="endHours" step="1" min="0" max="24" value="0">
+			<input type="number" id="endMins" step="1" min="0" max="60" value="0">	
+		</fieldset>		
+		</form>		
+		<select class="rang">
+			<option value="47">Администратор</option>
+			<option value="35">Ассистенты Стаса</option>
+			<option value="40">Егор</option>
+			<option value="50">Оля</option>
+		</select>
+		<div class="buttons">
+			<button class="calculate">Посчитать</button>
+			<button class="reset">Сбросить</button>
+		</div>
+		<div class="result"></div>
+	</div>
+	<script>
+
+let calculate = document.querySelector('.calculate');
+
+		calculate.addEventListener('click', function (){
+			document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s;  animation: fadeIn 1s;"
+			let startHours = document.querySelector('#startHours').value;
+			let msecSH = startHours*1000*60*60;			
+			let startMins = document.querySelector('#startMins').value;
+			let msecSM = startMins*1000*60;
+			let startTime = msecSH+msecSM;
+
+			let endHours = document.querySelector('#endHours').value;
+			let msecEH = endHours*1000*60*60;			
+			let endMins = document.querySelector('#endMins').value;
+			let msecEM = endMins*1000*60;
+			let endTime = msecEH+msecEM;
+
+			let diffms = endTime-startTime;
+			let diffTime = diffms/3600000;
+				console.log(diffTime);
+
+			let rang = document.querySelector('.rang').value;
+			let rangInt = parseInt(rang);
+
+			let result = diffTime*rangInt;
+				console.log(result);
+
+			let selectName = document.querySelector('.rang');
+			let stxt = selectName.options[selectName.selectedIndex].text;
+			let selectNameStr = document.createTextNode(stxt);
+				console.log(stxt);
+
+			let resultCont = document.querySelector('.result');
+			resultCont.innerHTML = stxt + ": " + result + " грн.<br> Рабочее время: " + diffTime + " час.";
+
+		});
+
+let reset = document.querySelector('.reset');
+		reset.addEventListener('click', function (){
+			document.querySelector('#startHours').value='0';
+			document.querySelector('#startMins').value='0';
+			document.querySelector('#endHours').value='0';
+			document.querySelector('#endMins').value='0';
+		});
+
+
+	</script>
+</body>
+</html>
