@@ -96,6 +96,8 @@ let calculate = document.querySelector('.calculate');
 			let msecEM = endMins*1000*60;
 			let endTime = msecEH+msecEM;
 
+			if(startHours < 0 || startHours > 24 || startMins < 0 || startMins > 60 || endHours < 0 || endHours >24 || endMins < 0 || endMins > 60) {alert( "Введите правильное время." );}
+			else {
 			let diffms = endTime-startTime;
 			let diffTimeFloat = diffms/3600000;
 			let diffTime = diffTimeFloat.toFixed(2);
@@ -118,6 +120,7 @@ let calculate = document.querySelector('.calculate');
 			resultCont.innerHTML = stxt + ": " + result + " грн.<br> Рабочее время: " + diffTime + " час.";
 			}
 			else {alert( "Введите правильное время." );}
+			}
 
 		});
 
