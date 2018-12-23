@@ -129,7 +129,7 @@ let calculate = document.querySelector('.calculate');
 
 			if (r.value == 0) {
 				alert( "Введите оплату." );}
-			else if(startHours < 0 || startHours > 24 || startMins < 0 || startMins > 60 || endHours < 0 || endHours >24 || endMins < 0 || endMins > 60) {
+			else if(startHours < 0 || startHours > 24 || startMins < 0 || startMins > 59 || endHours < 0 || endHours >24 || endMins < 0 || endMins > 59) {
 				alert( "Введите правильное время." );}
 			
 			else {
