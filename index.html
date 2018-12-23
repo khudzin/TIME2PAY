@@ -115,17 +115,17 @@ let calculate = document.querySelector('.calculate');
 
 		calculate.addEventListener('click', function (){
 				
-			let startHours = document.querySelector('#startHours').value;
-			let msecSH = startHours*1000*60*60;			
-			let startMins = document.querySelector('#startMins').value;
-			let msecSM = startMins*1000*60;
-			let startTime = msecSH+msecSM;
+			let startHours = document.querySelector('#startHours').value,
+			    msecSH = startHours*1000*60*60,			
+			    startMins = document.querySelector('#startMins').value,
+			    msecSM = startMins*1000*60,
+			    startTime = msecSH+msecSM;
 
-			let endHours = document.querySelector('#endHours').value;
-			let msecEH = endHours*1000*60*60;			
-			let endMins = document.querySelector('#endMins').value;
-			let msecEM = endMins*1000*60;
-			let endTime = msecEH+msecEM;
+			let endHours = document.querySelector('#endHours').value,
+			    msecEH = endHours*1000*60*60,			
+			    endMins = document.querySelector('#endMins').value,
+			    msecEM = endMins*1000*60,
+			    endTime = msecEH+msecEM;
 
 			if (r.value == 0) {
 				alert( "Введите оплату." );}
@@ -133,26 +133,21 @@ let calculate = document.querySelector('.calculate');
 				alert( "Введите правильное время." );}
 			
 			else {
-				let diffms = endTime-startTime;
-				let diffTimeFloat = diffms/3600000;
-				let diffTime = diffTimeFloat.toFixed(2);
+				let diffms = endTime-startTime,
+				    diffTimeFloat = diffms/3600000,
+				    diffTime = diffTimeFloat.toFixed(2);
 					console.log(diffTime);
 				if (diffTime > 0){
-				let rang = document.querySelector('.rang').value;
-				let rangInt = parseInt(rang);
+					let rang = document.querySelector('.rang').value;
+					let rangInt = parseInt(rang);
 
-				let resultFloat = diffTimeFloat*rangInt;
-				let result = resultFloat.toFixed(2);
+					let resultFloat = diffTimeFloat*rangInt;
+					let result = resultFloat.toFixed(2);
 					console.log(result);
 
-				// let selectName = document.querySelector('.rang');
-				// let stxt = selectName.options[selectName.selectedIndex].text;
-				// let selectNameStr = document.createTextNode(stxt);
-				// 	console.log(stxt);
-
-				let resultCont = document.querySelector('.result');
-				document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s forwards;  animation: fadeIn 1s forwards;"
-				resultCont.innerHTML = /*stxt + ": " + */result + " &#8372;<br> Рабочее время: " + diffTime + " час.";
+					let resultCont = document.querySelector('.result');
+					document.querySelector(".result").style.cssText = "-webkit-animation: fadeIn 1s forwards;  animation: fadeIn 1s forwards;"
+					resultCont.innerHTML = /*stxt + ": " + */result + " &#8372;<br> Рабочее время: " + diffTime + " час.";
 				}
 				else {
 					alert( "Введите правильное время." );}
